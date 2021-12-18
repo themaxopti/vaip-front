@@ -1,0 +1,182 @@
+@import "../../App.scss";
+
+.nav {
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-family: "Manrope";
+    height: 60px;
+}
+
+.firstColumn {
+    display: flex;
+    flex-basis: 35%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.iconColumn {
+    // align-self: flex-start;
+    height: 60px;
+    width: 180px;
+    position: relative;
+    img {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        object-fit: contain;
+    }
+}
+
+.secondColumn {
+    display: flex;
+    flex-basis: 35%;
+    justify-content: space-between;
+    align-items: center;
+
+    .storeIcon__value {
+        display: flex;
+        font-weight: lighter;
+        column-gap: 5px;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        img {
+            @include objectFit;
+        }
+    }
+
+    .userIcon {
+        width: 25px;
+        height: 25px;
+        position: relative;
+
+        img {
+            @include objectFit;
+        }
+    }
+
+    .storeIcon__value {
+        cursor: pointer;
+    }
+}
+
+.nav__mobile {
+    display: none;
+    height: 50px;
+    z-index: 100;
+    background-color: #131212;
+    &_items {
+        z-index: -1;
+        transition: 1s;
+        border-top: 1px solid white;
+        font-family: "Manrope";
+        position: fixed;
+        padding-left: 1rem;
+        top: -120%;
+        left: 0;
+        background-color: #131212;
+        width: 100vw;
+        height: 100vh;
+        &_wrap {
+            display: flex;
+            flex-direction: column;
+            row-gap: 30px;
+            margin-top: 40px;
+            height: 400px;
+            overflow: scroll;
+        }
+    }
+
+    .nav_and_logo {
+        display: flex;
+        align-items: center;
+        column-gap: 40px;
+    }
+
+    .navbar {
+        width: 22px;
+        height: 22px;
+        position: relative;
+        img {
+            @include objectFit;
+        }
+    }
+
+    .storeIcon__value {
+        font-family: "Manrope";
+        align-items: center;
+        display: flex;
+        color: white;
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            img {
+                @include objectFit;
+            }
+        }
+    }
+
+   
+}
+
+.user_info{
+    display: flex;
+    column-gap: 8px;
+    span{
+        transform: translateY(-5px);
+        align-self: flex-start;
+    }
+}
+
+.nav__mobile_items.top {
+    top: 50px;
+}
+
+@media (max-width: 576px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 900px) {
+    .nav__mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .iconColumn {
+        height: 40px;
+        width: 100px;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            object-fit: contain;
+        }
+    }
+
+    .nav {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 1400px) {
+}
