@@ -1,7 +1,10 @@
-.section{
+@import "../../App.scss";
+
+.section {
     width: 100%;
     display: flex;
-    &__wrap{
+    position: relative;
+    &__wrap {
         flex-grow: 1;
         max-width: 1280px;
         width: 100%;
@@ -11,13 +14,32 @@
     }
 }
 
-.section.positionFX{
+.section.withImage {
+    img {
+        @include objectFit;
+        z-index: 0;
+    }
+}
+
+.section.positionFX {
     position: fixed;
 }
 
-
-.section__wrap.centerItem{
+.section__wrap.centerItem {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.section__wrap {
+}
+
+.section.fullscreen {
+    min-height: 100vh;
+}
+
+@media (max-width: 900px) {
+    .section__wrap.borderBottom {
+        border-bottom: 1px solid white;
+    }
 }

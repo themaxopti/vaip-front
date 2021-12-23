@@ -1,4 +1,4 @@
-import React, { LegacyRef, useRef, useState } from "react"
+import React, { LegacyRef, useEffect, useRef, useState } from "react"
 import { Section } from "./Section"
 import s from './scss/Header.module.scss'
 import SigaretsIcon from '../assets/imgages/NoSigarets.svg'
@@ -7,6 +7,8 @@ import UserIcon from '../assets/imgages/Vector (2).svg'
 import { Link } from "react-router-dom"
 import Navbar from '../assets/imgages/navbar.svg'
 import classNames from "classnames"
+import Black from '../assets/imgages/black.jpg'
+
 
 export const Header: React.FC = () => {
 
@@ -18,6 +20,17 @@ export const Header: React.FC = () => {
     })
 
     const navbarRev = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const body = document.querySelector('body')
+        if (top) {
+            body?.classList.add('stopScroll')
+        }
+        if (!top) {
+            body?.classList.remove('stopScroll')
+        }
+        console.log('top')
+    },[top])
 
     function clickToNavbar() {
         setTope(!top)
@@ -31,12 +44,12 @@ export const Header: React.FC = () => {
     }
 
     return (
-        <Section zIndex={999} positionFX={true} backgroundColor="#131212">
+        <Section borderBottom={true} zIndex={999} positionFX={true} backgroundColor="#131212">
             <nav className={s.nav}>
                 <div className={s.firstColumn}>
-                    <Link to="/"> <div>Категории</div> </Link>
-                    <Link to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>lil solid</div> </Link>
-                    <Link to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>iqos</div> </Link>
+                    <Link     to="/categories"> <div>Категории</div> </Link>
+                    <Link   to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>lil solid</div> </Link>
+                    <Link   to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>iqos</div> </Link>
                     <Link to="/"> <div>Аксесуары</div> </Link>
                 </div>
 
@@ -72,12 +85,12 @@ export const Header: React.FC = () => {
 
                 <div className={mobile_nav_items_classes}>
                     <div className={s.nav__mobile_items_wrap}>
-                        <Link to="/"> <div>Категории</div> </Link>
-                        <Link to="/"> <div>lil solid</div> </Link>
-                        <Link to="/"> <div>iqos</div> </Link>
-                        <Link to="/"> <div>Аксесуары</div> </Link>
-                        <Link to="/"> <div>Что это такое?</div></Link>
-                        <Link to="/">
+                        <Link onClick={() => setTope(false)} to="/categories"> <div>Категории</div> </Link>
+                        <Link onClick={() => setTope(false)} to="/"> <div>lil solid</div> </Link>
+                        <Link onClick={() => setTope(false)} to="/"> <div>iqos</div> </Link>
+                        <Link onClick={() => setTope(false)} to="/"> <div>Аксесуары</div> </Link>
+                        <Link onClick={() => setTope(false)} to="/"> <div>Что это такое?</div></Link>
+                        <Link onClick={() => setTope(false)} to="/">
                             <div className={s.user_info}>
                                 <div className={s.userIcon}><img src={UserIcon} alt="" /></div>
                                 <span>name</span>

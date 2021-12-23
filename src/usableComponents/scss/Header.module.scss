@@ -77,7 +77,7 @@
     &_items {
         z-index: -1;
         transition: 1s;
-        border-top: 1px solid white;
+        // border-top: 1px solid white;
         font-family: "Manrope";
         position: fixed;
         padding-left: 1rem;
@@ -93,6 +93,8 @@
             margin-top: 40px;
             height: 400px;
             overflow: scroll;
+            z-index: -4;
+            background-color: #131212;
         }
     }
 

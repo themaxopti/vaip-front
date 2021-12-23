@@ -1,6 +1,6 @@
 import React from "react"
 import { Section } from "./Section"
-import s from './scss/Footer.module.scss'
+import './scss/Footer.scss'
 import MasterCard from '../assets/imgages/mastercard 1.svg'
 import Privat from '../assets/imgages/privat24 1.svg'
 import Visa from '../assets/imgages/visa 1.svg'
@@ -10,29 +10,29 @@ export const Footer: React.FC = () => {
     return (
         <>
             <Section backgroundColor="#131212">
-                <nav className={s.nav}>
-                    <div className={s.good_footer}>
+                <nav className={"nav"}>
+                    <div className={"good_footer"}>
                         <Link to="/"> <div>Полезная информация</div> </Link>
                         <Link to="/"> <div>Товары</div> </Link>
                         <Link to="/"> <div>lil SOLID</div> </Link>
                         <Link to="/"> <div>IQOS</div> </Link>
                         <Link to="/"> <div>Аксесуары</div> </Link>
                     </div>
-                    <div className={s.contacts}>
+                    <div className={"contacts"}>
                         <div>Контакты</div>
                         <div>+3809513243</div>
                     </div>
                     <div>
                         <Link to="/"> <div>Политика конфиденциальности</div></Link>
                     </div>
-                    <div className={s.politics}>
+                    <div className={"politics"}>
                         <div>
                             <Link to="/"> Публичная аферта</Link>
                         </div>
                     </div>
-                    <div className={s.tarifs}>
+                    <div className={"tarifs"}>
                         <div style={{ color: 'white' }}>Принимаем к оплате</div>
-                        <div className={s.tarifs_flex} style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div className={"tarifs_flex"} style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <div><img src={MasterCard} alt="" /></div>
                             <div><img src={Privat} alt="" /></div>
                         </div>

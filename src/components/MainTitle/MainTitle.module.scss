@@ -1,0 +1,382 @@
+@import "../../App.scss";
+
+.whatIsIqosWrap {
+    display: flex;
+    row-gap: 40px;
+    transform: translateY(-60px);
+    flex-direction: column;
+    justify-content: center;
+}
+
+.colummnOne {
+    @include FontMonRope(36px, #ffffff, 300);
+    line-height: 51px;
+}
+
+.columnTwo {
+    max-width: 300px;
+}
+
+.iqosBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 287px;
+    height: 62px;
+    background: #131212;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    border-radius: 495px;
+    @include FontMonRope(16px, #ffffff, bold);
+}
+
+.btn {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 0.6em;
+    color: white;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    // margin: 20px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
+.btn:hover,
+.btn:focus {
+    color: #fff;
+    outline: 0;
+}
+
+.first {
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    max-width: 300px;
+}
+.first:hover {
+    box-shadow: 0 0 40px 40px #131212 inset;
+}
+
+@media (max-width: 768px) {
+    .colummnOne {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .iqosBtn {
+        width: 187px;
+        font-size: 14px;
+        border-radius: 54px;
+        height: 50px;
+    }
+}
+
+// About Iqos
+
+.aboutIqos_wrap {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    display: flex;
+    height: 610px;
+}
+
+.aboutIqos_wrap_column_one {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+        transform: translateY(-40px);
+        @include FontMonRope(24px, #000000, bold);
+    }
+    p {
+        transform: translateY(-40px);
+        @include FontMonRope(24px, #000000, 300);
+
+        line-height: 33px;
+    }
+}
+
+.aboutIqos_wrap_column_two {
+    flex: 1 1 50%;
+
+    &_photo {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        img {
+            @include objectFitContain;
+        }
+    }
+}
+
+.aboutIqos_wrap_column_two_photo {
+}
+
+@media (max-width: 900px) {
+    .aboutIqos_wrap {
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+        height: 500px;
+    }
+
+    .aboutIqos_wrap_column_one {
+        h1 {
+            font-size: 18px;
+        }
+        p {
+            font-size: 18px;
+        }
+    }
+    .aboutIqos_wrap_column_two {
+        &_photo {
+            // height: 400px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .aboutIqos_wrap {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        height: 700px;
+    }
+
+    .aboutIqos_wrap {
+        flex-direction: column;
+    }
+}
+
+// About Iqos
+
+// Vaip and Iqos
+
+.vaip_andIqos {
+    width: 100%;
+    display: flex;
+    // height: 453px;
+}
+
+.vaip_andIqos_column_one {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    transition: 0.7s;
+    flex: 1 1 50%;
+    background-color: #262424;
+    display: flex;
+    row-gap: 57px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    transition: 0.4s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include FontMonRope(16px, #0f0f0f, bold);
+    width: 256px;
+    height: 49px;
+    background: #f7eeee;
+    border: 1px solid #fbfbfb;
+    box-sizing: border-box;
+    border-radius: 97px;
+    opacity: 0;
+}
+
+.button.two {
+    opacity: 0;
+    transition: 0.4s;
+    background: #2f2c2c;
+    color: #ffffff;
+}
+
+.photo_and_title {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    // justify-content: center;
+    align-items: center;
+    &_photo {
+    }
+
+    &_title {
+        font-family: "Conv_Moon Bold";
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        color: #ffffff;
+    }
+}
+
+.vaip_andIqos_column_two {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    transition: 0.7s;
+    flex: 1 1 50%;
+    background-color: #f7f7f7;
+    display: flex;
+    row-gap: 57px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.vaip_andIqos_column_two:hover {
+    flex: 1 1 60%;
+
+    .button.two {
+        opacity: 1;
+    }
+}
+
+.vaip_andIqos_column_one:hover {
+    flex: 1 1 60%;
+    .button {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 900px) {
+    .button.two {
+        opacity: 1;
+    }
+
+    .button {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .vaip_andIqos {
+        flex-direction: column;
+    }
+}
+
+// Vaip and Iqos
+
+// SLider
+
+.hz {
+    margin-left: 200px;
+    max-width: 300px;
+    height: 100px;
+    border: 1px solid red;
+}
+
+.wrapper_card {
+    position: relative;
+    text-align: center;
+}
+
+.best {
+    @include FontMonRope(18px, black, bold);
+}
+
+// SLider
+
+
+
+// NeverLate
+
+.neverLate_wrap {
+    display: flex;
+    height: 750px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    &_columnOne {
+        flex: 1 1 50%;
+        &_image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            img {
+                @include objectFit;
+            }
+        }
+    }
+
+    &_columnTwo {
+        flex: 1 1 50%;
+        background-color: #302b2b;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        &_content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 92px;
+            &_title {
+                @include FontMonRope(24px, white, bold);
+            }
+            &_desc {
+                //
+                @include FontMonRope(18px, white, 300);
+            }
+            &_btn {
+                @include FontMonRope(18px, white, 300);
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 203px;
+                height: 51px;
+                font-size: 14px;
+                background: #302b2b;
+                border: 1px solid #eee4e4;
+                box-sizing: border-box;
+                border-radius: 12px;
+            }
+        }
+    }
+}
+
+@media(max-width:768px){
+    .neverLate_wrap{
+        flex-direction: column;
+
+        &_columnOne {
+            &_image {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                img {
+                    @include objectFit;
+                }
+            }
+        }
+
+
+        &_columnTwo{
+            &_content{
+                row-gap: 30px;
+
+            }
+        }
+    }
+
+}
+
+// NeverLate

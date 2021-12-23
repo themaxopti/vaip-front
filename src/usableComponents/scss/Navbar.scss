@@ -1,0 +1,35 @@
+@import '../../App.scss';
+
+
+.navbar{
+    flex: 1 1 20%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    &_item{
+        cursor: pointer;
+        max-width: 120px;
+        height: 30px;
+        @include FontMonRope(18px,black,300);
+        border-bottom: 2px solid black;
+    }
+}
+
+.navbar_item:hover{
+    font-weight: bold;
+    
+    // max-width: 90%;    
+    // border-bottom: none;
+}
+
+.navbar_item.active{
+    max-width: 90%;    
+    font-weight: bold;
+    // border-bottom: none;
+}
+
+@media(max-width:768px){
+    .navbar{
+        display: none;
+    }
+}

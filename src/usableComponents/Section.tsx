@@ -15,7 +15,12 @@ type PropsType = {
     backgroundColor?: string,
     positionFX?: boolean,
     zIndex?: number,
-    position?: Position
+    position?: Position,
+    fullscreen?: boolean,
+    backgroundImage?: any,
+    withImage?: boolean,
+    borderBottom?: boolean,
+    overflowHid?:string
 }
 
 
@@ -26,25 +31,34 @@ export const Section: React.FC<PropsType> = ({
     backgroundColor = 'white',
     positionFX = false,
     zIndex,
-    position = 'static'
+    position = 'static',
+    fullscreen = false,
+    backgroundImage,
+    withImage = false,
+    borderBottom = false,
+    overflowHid
 }) => {
 
 
     let sectionClasses = classNames({
         [s.section__wrap]: true,
         [s.centerItem]: centreObj,
+        [s.borderBottom]:borderBottom
     })
 
 
     let mainSectionClasses = classNames({
         [s.section]: true,
-        [s.positionFX]: positionFX
+        [s.positionFX]: positionFX,
+        [s.fullscreen]: fullscreen,
+        [s.withImage]: withImage
     })
 
 
     return (
-        <div className={mainSectionClasses} style={{ backgroundColor: backgroundColor, zIndex}}>
-            <div className={sectionClasses} style={{backgroundColor:backgroundColor}}>
+        <div className={mainSectionClasses} style={{ backgroundColor: backgroundColor, zIndex }}>
+            <img src={backgroundImage} alt="" />
+            <div className={sectionClasses} style={{ backgroundColor: backgroundColor,overflow:overflowHid }}>
                 {children}
             </div>
         </div>

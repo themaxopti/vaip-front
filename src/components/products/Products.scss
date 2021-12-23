@@ -1,0 +1,82 @@
+@import '../../App.scss';
+
+.wrapper_products{
+    display: flex;
+    padding-top: 3rem;
+    column-gap: 28px;
+    padding-bottom: 3rem;
+}
+
+.other_content{
+    width: 100%;
+    // margin-left: 240px;
+}
+
+.other_content.removeMargin{
+    margin-left:4px;
+    // width: 100%;
+}
+
+.category__cards{
+    width: 100%;
+    row-gap: 100px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.title_category{
+    @include FontMonRope(24px,black,bold);
+    margin-bottom: 50px;
+}   
+
+
+
+// Categories
+
+.category{
+    display: flex;
+    flex-direction: column;
+    height: 363px;
+    width: 90%;
+    &__columnOne{
+        &_img{
+            position: relative;
+            height: 237px;
+            width: 100%;
+            img{
+                // @include objectFit;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    &__columnTwo{
+        padding-top: 1rem;
+        @include FontMonRope(18px,black,bold);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &_btn{
+            width: 149px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            align-items: center;
+            background-color: #2F2C2C;
+            color: white;
+            border-radius: 97px;
+        }
+    }
+}
+
+@media(max-width:768px){
+    .category{
+        width: 100%;
+    }
+}
