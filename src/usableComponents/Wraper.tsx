@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Section } from "./Section"
-import  './scss/Wraper.scss'
+import './scss/Wraper.scss'
 import { Header } from "./Header"
 import { Footer } from "./Footer"
+import { Store } from "./Store"
 
 
 type PropsType = {
@@ -10,14 +11,20 @@ type PropsType = {
 }
 
 
-export const Wraper: React.FC = ({ children }) => {
+export const Wraper: React.FC = React.memo(({ children }) => {
+
+    const [openStore, setOpenStore] = useState(false)
+
+   
     return (
         <div className="wraper">
-            <Header/>
+            <Store openStore={openStore} setOpenStore={ setOpenStore} />
+
+            <Header openStore={openStore} setOpenStore={setOpenStore} />
             <main className="main">
                 {children}
             </main>
             <Footer />
         </div>
     )
-}
+})

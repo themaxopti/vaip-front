@@ -9,8 +9,13 @@ import Navbar from '../assets/imgages/navbar.svg'
 import classNames from "classnames"
 import Black from '../assets/imgages/black.jpg'
 
+interface Props {
+    openStore?: boolean,
+    setOpenStore?: any
+}
 
-export const Header: React.FC = () => {
+
+export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
 
     const [top, setTope] = useState(false)
 
@@ -29,8 +34,7 @@ export const Header: React.FC = () => {
         if (!top) {
             body?.classList.remove('stopScroll')
         }
-        console.log('top')
-    },[top])
+    }, [top])
 
     function clickToNavbar() {
         setTope(!top)
@@ -47,9 +51,9 @@ export const Header: React.FC = () => {
         <Section borderBottom={true} zIndex={999} positionFX={true} backgroundColor="#131212">
             <nav className={s.nav}>
                 <div className={s.firstColumn}>
-                    <Link     to="/categories"> <div>Категории</div> </Link>
-                    <Link   to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>lil solid</div> </Link>
-                    <Link   to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>iqos</div> </Link>
+                    <Link to="/categories"> <div>Категории</div> </Link>
+                    <Link to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>lil solid</div> </Link>
+                    <Link to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>iqos</div> </Link>
                     <Link to="/"> <div>Аксесуары</div> </Link>
                 </div>
 
@@ -58,7 +62,7 @@ export const Header: React.FC = () => {
 
                 <div className={s.secondColumn}>
                     <Link to="/"> <div>Что это такое?</div></Link>
-                    <div className={s.storeIcon__value}>
+                    <div onClick={() => setOpenStore(true)} className={s.storeIcon__value}>
                         <div className={s.icon}><img src={StoreIcon} alt="" /></div>
                         <div>1231 UAN</div>
                     </div>
@@ -78,7 +82,7 @@ export const Header: React.FC = () => {
                     <Link to="/"> <div className={s.iconColumn}><img src={SigaretsIcon} alt="" /></div></Link>
                 </div>
 
-                <div className={s.storeIcon__value}>
+                <div onClick={() => setOpenStore(true)} className={s.storeIcon__value}>
                     <div className={s.icon}><img src={StoreIcon} alt="" /></div>
                     <div>1231 UAN</div>
                 </div>

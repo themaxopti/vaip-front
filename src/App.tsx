@@ -9,6 +9,8 @@ import { CategoriesOf } from './components/Categories/CategoriesOf';
 import { Register } from './components/LoginAndRegister/Register';
 import { Login } from './components/LoginAndRegister/Login';
 import { UserPage } from './components/UserPage/UserPage';
+import { Product } from './components/Product/Product';
+import { Store } from './usableComponents/Store';
 
 const MainTitleWith = SettingsHoc(MainTitle)
 const PlusMinusWith = SettingsHoc(PlusMinus)
@@ -17,12 +19,14 @@ const CategoriesOfWith = SettingsHoc(CategoriesOf)
 const RegisterWith = SettingsHoc(Register)
 const LoginWith = SettingsHoc(Login)
 const UserPageWith = SettingsHoc(UserPage)
+const ProductWith = SettingsHoc(Product)
 
-// Login
+// Login Product
 
 const App: React.FC = () => {
   return (
     <div>
+
       <Routes>
         <Route path="/" element={<MainTitleWith />} />
         <Route path="/plusMinus" element={<PlusMinusWith />} />
@@ -31,6 +35,7 @@ const App: React.FC = () => {
         <Route path="/register" element={<RegisterWith />} />
         <Route path="/login" element={<LoginWith />} />
         <Route path="/userPage" element={<UserPageWith />} />
+        <Route path="/product/:id" element={<ProductWith />} />
       </Routes>
     </div>
   );
