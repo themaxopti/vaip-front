@@ -1,0 +1,36 @@
+@import '../../App.scss';
+
+.animation{
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 1);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrap{
+    border: 1px solid white;
+    @include FontMonRope(25px,white,bold);
+    // max-width: 500px;
+    width: 90%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexItem{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0px;
+}
+
+
+@media(max-width:768px){
+    .wrap{
+        font-size: 20px;
+    }
+}

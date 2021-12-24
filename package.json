@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-spring/types": "^9.3.2",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +20,7 @@
     "react-router-dom": "^6.1.1",
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
+    "react-spring": "^9.3.3",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "sass": "^1.45.0",

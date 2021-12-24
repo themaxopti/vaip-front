@@ -13,6 +13,9 @@ interface NavElemetn {
 
 
 export const Navbar: React.FC = () => {
+
+    const [scrollTop, setScrollTop] = useState(0)
+
     let [searchParams, setSearchParams] = useSearchParams()
 
     const [activeSlide, setActiveSlide] = useState<number>(0)
@@ -27,7 +30,6 @@ export const Navbar: React.FC = () => {
 
         const categoryId = searchParams.get('categoryId') || 0
 
-        console.log('mount')
         // @ts-ignore
         activeSlideRef.current[categoryId].classList.add('active')
     }, [categoryId])
@@ -61,7 +63,9 @@ export const Navbar: React.FC = () => {
     const activeSlideRef = useRef([]);
 
 
-    console.log(activeSlideRef.current)
+
+
+
 
 
     return (

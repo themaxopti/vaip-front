@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Routes, Route } from 'react-router-dom'
 import { MainTitle } from './components/MainTitle/MainTitle';
@@ -11,6 +11,8 @@ import { Login } from './components/LoginAndRegister/Login';
 import { UserPage } from './components/UserPage/UserPage';
 import { Product } from './components/Product/Product';
 import { Store } from './usableComponents/Store';
+import { IsEighteen } from './components/IsEighteen/IsEighteen';
+import { Animation } from './components/Animation/Animation';
 
 const MainTitleWith = SettingsHoc(MainTitle)
 const PlusMinusWith = SettingsHoc(PlusMinus)
@@ -24,8 +26,19 @@ const ProductWith = SettingsHoc(Product)
 // Login Product
 
 const App: React.FC = () => {
+  // @ts-ignore
+  let hide = JSON.parse(localStorage.getItem('hide') || false)
+
+  const [animation,setAnimation] = useState(hide)
+
+
   return (
     <div>
+
+      {/* <IsEighteen animation={animation} setAnimation={setAnimation} />
+
+      {hide && <Animation />} */}
+
 
       <Routes>
         <Route path="/" element={<MainTitleWith />} />
