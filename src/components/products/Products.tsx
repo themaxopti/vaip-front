@@ -4,9 +4,32 @@ import  './Products.scss'
 import { Section } from "../../usableComponents/Section"
 import { Navbar } from "../../usableComponents/Navbar"
 import { Categories } from "./Categories"
+import { useSearchParams } from "react-router-dom"
+import { fetchCurrentProducts } from "../../redux/product-reducer"
+import { useAppDispatch } from "../../redux/redux-toolkit-store"
 
 export const Products: React.FC = () => {
 
+    const dispatch = useAppDispatch()
+
+    let [searchParams,setSearchParams] = useSearchParams()
+
+    const title = searchParams.get('title') || ''
+
+    useEffect(() => {
+        if(title == ''){
+            dispatch(fetchCurrentProducts(title))
+        }
+    },[])
+
+    useEffect(() => {
+        dispatch(fetchCurrentProducts(title))
+    },[title])
+
+    
+    // useEffect(() => {
+    //     console.log(title)
+    // },[title])
     
 
     return (

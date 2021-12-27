@@ -9,6 +9,7 @@
 
 .other_content{
     width: 100%;
+    min-height: 800px;
     // margin-left: 240px;
 }
 
@@ -21,7 +22,8 @@
     width: 100%;
     row-gap: 100px;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    column-gap: 80px;
     flex-wrap: wrap;
 }
 
@@ -74,7 +76,7 @@
         }
     }
 }
-
+ 
 
 @media(max-width:768px){
     .category{

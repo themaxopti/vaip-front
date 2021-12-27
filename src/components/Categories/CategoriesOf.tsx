@@ -20,24 +20,25 @@ const Category: React.FC = () => {
 
     interface Categories {
         title: string,
-        src: any
+        src: any,
+        titleCategory:string,
+        id:number
     }
 
 
     const categories: Categories[] = [
-        { title: 'Iqos', src: IqoslCat },
-        { title: 'Vape', src: VapeCat },
-        { title: 'Lil Solid', src: lilSolidCat },
-        { title: 'Аксесуары', src: embalCat },
-        { title: 'Блоки для нагревания табака', src: StickslCat },
+        { title: 'Iqos', src: IqoslCat,titleCategory:'iqos',id:1 },
+        { title: 'Vape', src: VapeCat,titleCategory:'vape',id:4 },
+        { title: 'Lil Solid', src: lilSolidCat ,titleCategory:'lilSolid',id:2},
+        { title: 'Аксесуары', src: embalCat ,titleCategory:'embalishment',id:3},
+        { title: 'Блоки для нагревания табака', src: StickslCat ,titleCategory:'sticks',id:5},
     ]
 
     return (
         <>
-
             {categories.map((el,i) => {
                 return <div key={i} className="category">
-                    <Link to="/">
+                    <Link to={`/products?categoryId=${el.id}&title=${el.titleCategory}&titleH=${el.title}`}>
                         <div className="category__columnOne">
                             <div className="category__columnOne_img">
                                 <img src={el.src} alt="" />
@@ -50,7 +51,6 @@ const Category: React.FC = () => {
                     </Link>
                 </div>
             })}
-
         </>
     )
 }

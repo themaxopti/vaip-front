@@ -13,7 +13,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunkMiddleware)))
 
 
-
+ 
 type RootReducerType = typeof rootReducer; // (globalstate: AppStateType) => AppStateType
 export type AppStateType = ReturnType<RootReducerType>
 

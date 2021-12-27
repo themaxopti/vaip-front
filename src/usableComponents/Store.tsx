@@ -89,12 +89,7 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
                         <div className={s.line}></div>
                     </div>
                     <div className={s.cards}>
-                        <CardFlex />
-                        <CardFlex />
-                        <CardFlex />
-                        <CardFlex />
-                        <CardFlex />
-                        <CardFlex />
+                        <CardFlex _id='1' title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} />
                     </div>
                 </div>
 

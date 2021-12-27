@@ -51,10 +51,10 @@ export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
         <Section borderBottom={true} zIndex={999} positionFX={true} backgroundColor="#131212">
             <nav className={s.nav}>
                 <div className={s.firstColumn}>
-                    <Link to="/categories"> <div>Категории</div> </Link>
-                    <Link to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>lil solid</div> </Link>
-                    <Link to="/"> <div style={{ fontFamily: 'Conv_Moon Light' }}>iqos</div> </Link>
-                    <Link to="/"> <div>Аксесуары</div> </Link>
+                    <Link to="/categories?titleH=Категории"> <div>Категории</div> </Link>
+                    <Link to="/products?title=lilSolid&categoryId=2&titleH=Lil solid"> <div style={{ fontFamily: 'Conv_Moon Light' }}>Lil solid</div> </Link>
+                    <Link to="/products?title=iqos&categoryId=1&titleH=iqos"> <div style={{ fontFamily: 'Conv_Moon Light' }}>iqos</div> </Link>
+                    <Link to="/products?title=embalishment&categoryId=3&titleH=Аксесуары"> <div>Аксесуары</div> </Link>
                 </div>
 
 

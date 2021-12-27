@@ -107,11 +107,11 @@ const Tovars: React.FC = () => {
         <>
             <div className={s.tovars_title}>Мои заказы</div>
             <div className={s.tovars_wrap}>
+                <Card _id="1" title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} isBuy={false} />
+                {/* <Card isBuy={false} />
                 <Card isBuy={false} />
                 <Card isBuy={false} />
-                <Card isBuy={false} />
-                <Card isBuy={false} />
-                <Card isBuy={false} />
+                <Card isBuy={false} /> */}
             </div>
         </>
     )

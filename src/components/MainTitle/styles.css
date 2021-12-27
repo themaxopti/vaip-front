@@ -109,6 +109,10 @@
   height: 400px;
 }
 
+.mySwiper2 .swiper-slide img{
+  object-fit: contain;
+}
+
 .mySwiper2 .swiper-pagination-bullet-active {
   color: #fff;
   background: white;
