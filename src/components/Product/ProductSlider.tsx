@@ -53,7 +53,7 @@ export const ProductSlider: React.FC = () => {
             }} slidesPerView={3} spaceBetween={0} className="mySwiper3">
                 {
                     globalFetching && slides.map(el =>
-                        <SwiperSlide><Card key={el._id} _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} /></SwiperSlide>
+                        <SwiperSlide key={el._id}><Card _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} /></SwiperSlide>
                     )
                 }
                 {/* <SwiperSlide><Card _id='1' title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} /></SwiperSlide> */}

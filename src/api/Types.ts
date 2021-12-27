@@ -19,3 +19,9 @@ export interface ProductType {
     amountIn?: string,
     dirPhotoName?: string
 }
+
+
+export type RegisterType = {
+    password:string,
+    email:string
+}

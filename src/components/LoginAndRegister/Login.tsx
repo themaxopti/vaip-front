@@ -1,11 +1,14 @@
 import classNames from "classnames"
 import { Formik } from "formik"
 import React, { useEffect, useRef, useState } from "react"
-import { Link, useSearchParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Link, useNavigate, useSearchParams } from "react-router-dom"
+import { RootState, useAppDispatch } from "../../redux/redux-toolkit-store"
+import { login } from "../../redux/user-reducer"
 import { Section } from "../../usableComponents/Section"
 import { Wraper } from "../../usableComponents/Wraper"
 import s from './Login.module.scss'
-
+import Loading from '../../assets/imgages/gif/Rolling-1s-200px (4).gif'
 
 interface Errors {
     email?: string,
@@ -13,28 +16,34 @@ interface Errors {
 }
 
 const Form: React.FC = () => {
+    const dispatch = useAppDispatch()
+    const message = useSelector((state: RootState) => state.user.messageLoginForm)
+
+    const isFetching = useSelector((state: RootState) => state.user.fetchUser)
+    const navigate = useNavigate()
     return (
         <Formik
-            initialValues={{ email: '', password: '', repetPassword: '' }}
+            initialValues={{ email: '', password: '' }}
             validate={values => {
                 const errors: Errors = {};
                 if (!values.email) {
                     errors.email = 'Поле должно быть заполнено';
-                } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                    errors.email = 'Введите корректный емейл';
                 }
-                if (values.password.length < 6) {
-                    errors.password = 'Пароль должен быть больше 6 символов'
+                if (!values.password) {
+                    errors.password = 'Поле должно быть заполнено'
                 }
 
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(4)
-                }, 400);
+                const { email, password } = values
+
+                const objLogin = {
+                    email, password
+                }
+
+
+                dispatch(login(objLogin)).then(data => data == 301 ? navigate('/userPage') : null)
             }}
         >
             {({
@@ -58,7 +67,7 @@ const Form: React.FC = () => {
                             onBlur={handleBlur}
                             value={values.email}
                         />
-                        <p style={{ color: 'red' }}>{errors.email && touched.email && errors.email}</p>
+                        {errors.email ? touched.email && <p style={{ color: 'red' }}>{errors.email}</p> : null}
                         <input
                             className={s.input}
                             type="password"
@@ -69,9 +78,13 @@ const Form: React.FC = () => {
                             value={values.password}
                         />
 
-                        <p style={{ color: 'red' }}>  {errors.password || touched.password || touched.repetPassword}</p>
+                        {errors.password ? touched.password && <p style={{ color: 'red' }}>  {errors.password}</p> : null}
+
+                        {message ? <p>{message}</p> : null}
+
                         <button className={s.btnSubmit} type="submit">
-                            Войти
+                            
+                            {isFetching ? <img style={{width:'30px',height:'30px'}} src={Loading} /> : <span>Войти</span> }
                         </button>
                     </form>
                 </>

@@ -27,7 +27,6 @@ const slice = createSlice({
     initialState,
     reducers: {
         getRandomItem(state, action) {
-            console.log(action.payload.data)
             state.randomItems = action.payload.data
         },
         fetchingWaitItems(state) {

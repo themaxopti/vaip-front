@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ProductType } from "./Types";
+import { GetUserInformData } from "../redux/user-reducer";
+import { ProductType, RegisterType } from "./Types";
 
 const api = axios.create({
     baseURL: 'https://nosigarets.herokuapp.com/api',
@@ -9,9 +10,9 @@ const api = axios.create({
 
 export class ProductsApi {
 
-    titleProduct:string
+    titleProduct: string
 
-    constructor(title:string){
+    constructor(title: string) {
         this.titleProduct = title
     }
 
@@ -19,13 +20,30 @@ export class ProductsApi {
         return api.get<ProductType>('/products/random')
     }
 
-    async getCurrentProduct(){        
-            return api.get<ProductType>(`/${this.titleProduct}/all`)
+    async getCurrentProduct() {
+        return api.get<ProductType>(`/${this.titleProduct}/all`)
     }
 
-    static async getOneProduct(_id:string){
+    static async getOneProduct(_id: string) {
         return api.get<ProductType>(`/products/${_id}`)
     }
+}
 
+export class UserApi {
+    constructor() {
+
+    }
+
+    static async login(email:string, password:string) {
+        return api.post<GetUserInformData>('/login', { email, password })
+    }
+
+    static async registerUser(password: string, email: string, name: string) {
+        return api.post('/register', {
+            password,
+            email,
+            name
+        })
+    }
 }
 

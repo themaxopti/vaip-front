@@ -137,6 +137,11 @@
   }
 
 
+  .mySwiper2 .swiper-pagination-bullet {
+    width: 7px;
+    height: 7px;
+  }
+
   .mySwiper2 .swiper-button-next {
     margin-top: 160px;
     margin-right: 30px;

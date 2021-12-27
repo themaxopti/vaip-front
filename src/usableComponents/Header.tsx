@@ -66,7 +66,7 @@ export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
                         <div className={s.icon}><img src={StoreIcon} alt="" /></div>
                         <div>1231 UAN</div>
                     </div>
-                    <Link to="/">
+                    <Link to="/userPage">
                         <div className={s.user_info}>
                             <div className={s.userIcon}><img src={UserIcon} alt="" /></div>
                         </div>
