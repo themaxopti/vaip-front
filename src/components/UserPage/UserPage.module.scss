@@ -73,7 +73,7 @@
                 flex: 1 1 50%;
                 display: flex;
                 &_value {
-                    max-width: 91px;
+                    min-width: 91px;
                     display: flex;
                     flex-direction: column;
                     row-gap: 23px;

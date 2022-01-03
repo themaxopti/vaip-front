@@ -7,6 +7,8 @@ import classNames from "classnames"
 import { useSelector } from "react-redux"
 import { RootState, useAppDispatch } from "../../redux/redux-toolkit-store"
 import { fetchRandomItems } from "../../redux/product-reducer"
+import { api, TestApi } from "../../api/axiosApi"
+import axios from "axios"
 
 
 export const WhatIsIcos: React.FC = () => {
@@ -18,18 +20,20 @@ export const WhatIsIcos: React.FC = () => {
         [s.first]: true
     })
 
-    const asyncZ = () => dispatch(fetchRandomItems())
+    const asyncZ = () => {
+        api.get('/getCookie')
+    }
 
     return (
         <Section centreObj={true} backgroundColor="rgba(0, 0, 0, 0)" backgroundImage={fullscreenImage} withImage={true} fullscreen={true}>
             <div className={s.whatIsIqosWrap}>
                 <div className={s.colummnOne}>Вред курения в том, что оно вызывает три основных заболевания: рак легких, хронический бронхит, коронарная болезнь. </div>
                 <div className={s.columnTwo}>
-                    <Link to="/">
+                    {/* <Link to="/"> */}
                         <div onClick={asyncZ} className={btn}>
                             Что такое iqos?
                         </div>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </div>
         </Section>

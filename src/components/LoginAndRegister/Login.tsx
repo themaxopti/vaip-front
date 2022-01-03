@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { Link, useNavigate, useSearchParams } from "react-router-dom"
 import { RootState, useAppDispatch } from "../../redux/redux-toolkit-store"
-import { login } from "../../redux/user-reducer"
+import { auth, login } from "../../redux/user-reducer"
 import { Section } from "../../usableComponents/Section"
 import { Wraper } from "../../usableComponents/Wraper"
 import s from './Login.module.scss'
@@ -21,6 +21,14 @@ const Form: React.FC = () => {
 
     const isFetching = useSelector((state: RootState) => state.user.fetchUser)
     const navigate = useNavigate()
+
+    async function NavigateAnd() {
+        try {
+            navigate('/userPage')
+        } catch (e) {
+            console.log(e)
+        }
+    }
     return (
         <Formik
             initialValues={{ email: '', password: '' }}
@@ -43,7 +51,7 @@ const Form: React.FC = () => {
                 }
 
 
-                dispatch(login(objLogin)).then(data => data == 301 ? navigate('/userPage') : null)
+                dispatch(login(objLogin)).then(data => data == 301 ? NavigateAnd() : null)
             }}
         >
             {({
@@ -83,8 +91,8 @@ const Form: React.FC = () => {
                         {message ? <p>{message}</p> : null}
 
                         <button className={s.btnSubmit} type="submit">
-                            
-                            {isFetching ? <img style={{width:'30px',height:'30px'}} src={Loading} /> : <span>Войти</span> }
+
+                            {isFetching ? <img style={{ width: '30px', height: '30px' }} src={Loading} /> : <span>Войти</span>}
                         </button>
                     </form>
                 </>

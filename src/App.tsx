@@ -13,6 +13,8 @@ import { Product } from './components/Product/Product';
 import { Store } from './usableComponents/Store';
 import { IsEighteen } from './components/IsEighteen/IsEighteen';
 import { Animation } from './components/Animation/Animation';
+import { useAppDispatch } from './redux/redux-toolkit-store';
+import { auth } from './redux/user-reducer';
 
 const MainTitleWith = SettingsHoc(MainTitle)
 const PlusMinusWith = SettingsHoc(PlusMinus)
@@ -25,12 +27,28 @@ const ProductWith = SettingsHoc(Product)
 
 // Login Product
 
+
+function getCookie(name: any) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 const App: React.FC = () => {
   // @ts-ignore
   let hide = JSON.parse(localStorage.getItem('hide') || false)
 
-  const [animation,setAnimation] = useState(hide)
+  const [animation, setAnimation] = useState(hide)
 
+  const dispatch = useAppDispatch()
+
+  // @ts-ignore
+  useEffect(async () => {
+    dispatch(auth())
+  }, [])
+
+  console.log(localStorage.getItem('token'))
 
   return (
     <div>
@@ -38,6 +56,7 @@ const App: React.FC = () => {
       {/* <IsEighteen animation={animation} setAnimation={setAnimation} />
 
       {hide && <Animation />} */}
+
 
 
       <Routes>
