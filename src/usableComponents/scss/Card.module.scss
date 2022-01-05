@@ -85,3 +85,36 @@
         @include objectFit;
     }
 }
+
+.cardFlex{
+    position: relative;
+    overflow: visible;
+}
+
+// .cardFlex::after{
+//     content: '';
+//     position: absolute;
+//     background-image: url('../../assets/imgages/krest/1487086345-cross_81577.svg');
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     top: -10px;
+//     right: -10px;
+//     cursor: pointer;
+//     width: 27px;
+//     background-color: white;
+//     border-radius: 50%;
+//     border: 1px solid black;
+//     height: 27px;
+// }
+
+.krest{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
+    width: 27px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid black;
+    height: 27px;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Wraper } from '../../usableComponents/Wraper';
 import '../../App.scss';
 import { Section } from '../../usableComponents/Section';
@@ -20,10 +20,14 @@ import SwiperCore, {
     Pagination
 } from 'swiper';
 import { ProductSlider } from './ProductSlider';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { RootState, useAppDispatch } from '../../redux/redux-toolkit-store';
 import { fetchOneProduct, fetchRandomItems } from '../../redux/product-reducer';
 import { useSelector } from 'react-redux';
+import { addProduct } from '../../redux/painer-reducer';
+import { ThemeContext} from '../../usableComponents/context/context';
+
+
 SwiperCore.use([Navigation, Pagination]);
 // Swiper
 
@@ -36,10 +40,11 @@ export const Product: React.FC = () => {
     const { title, description, color, compatibility,
         htmlColor, category, isCapsula, complection,
         value, photos, weight, valueKlimoaiser,
-        valueOfNikotin, best, amountIn, kit } = useSelector((state: RootState) => state.products.oneProduct)
+        valueOfNikotin, best, amountIn, kit,_id } = useSelector((state: RootState) => state.products.oneProduct)
 
     const isFetching = useSelector((state: RootState) => state.products.fetchingProducts)
     const isFetching2 = useSelector((state: RootState) => state.products.waitProducts)
+    const isAuth = useSelector((state:RootState) => state.user.isAuth)
 
     const globalFetching = !isFetching2 && !isFetching
     const { id } = useParams()
@@ -56,14 +61,6 @@ export const Product: React.FC = () => {
     }, [])
 
 
-    function addCount() {
-        setCount(count + 1)
-        debugger
-        setSearchParams({
-            amount: count.toString()
-        })
-    }
-
     useEffect(() => {
         setSearchParams({
             amount: count.toString()
@@ -74,12 +71,6 @@ export const Product: React.FC = () => {
         }
     }, [count])
 
-    function removeCount() {
-        setCount(count - 1)
-        setSearchParams({
-            amount: count.toString()
-        })
-    }
 
     useEffect(() => {
         dispatch(fetchOneProduct(id || ''))
@@ -87,8 +78,23 @@ export const Product: React.FC = () => {
         window.scrollTo(0, 0)
     }, [id])
 
+
+    const navigate = useNavigate()
+
+    const addToStore = async () => {  
+        if(!isAuth){
+            navigate('/login')
+        }
+        dispatch(addProduct(_id))
+        setOpenStore(true)
+        // setOpenStore(true)
+    }
+
+    const [openStore, setOpenStore] = useState(false)
+   
+    
     return (
-        <Wraper>
+        <Wraper openStore={openStore} setOpenStore={setOpenStore}>
             <Section overflowHid='hidden'>
                 {globalFetching && <div className={s.products_wrap}>
                     <div className={s.products_wrap_columnOne}>
@@ -109,7 +115,7 @@ export const Product: React.FC = () => {
                                 <div className={s.matrix}>{count}</div>
                                 <div onClick={() => setCount(prev => prev + 1)}>+</div>
                             </div>
-                            <div className={s.add}>
+                            <div onClick={addToStore} className={s.add}>
                                 <div>Добавить в корзину</div>
                                 <div><img src={arrow} alt="" /></div>
                             </div>

@@ -25,15 +25,6 @@ const LoginWith = SettingsHoc(Login)
 const UserPageWith = SettingsHoc(UserPage)
 const ProductWith = SettingsHoc(Product)
 
-// Login Product
-
-
-function getCookie(name: any) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 
 const App: React.FC = () => {
   // @ts-ignore

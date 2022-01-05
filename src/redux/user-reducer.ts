@@ -4,14 +4,16 @@ import { ProductType, RegisterType } from './../api/Types';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { useLocalStorage } from '../components/hooks/useLocalStorage';
 import axios from 'axios';
+import { fetchPainer } from './painer-reducer';
 
 
 export interface ChangeUser {
     userName: string,
     surrname: string,
     father: string,
-    phome: string,
-    userEmail: string
+    phone: string,
+    userEmail: string,
+    message:string
 }
 
 export type UserInformation = {
@@ -21,7 +23,7 @@ export type UserInformation = {
     // token: string,
     surrname: string,
     father: string,
-    phome: string,
+    phone: string,
     userEmail: string,
     isActivated: boolean,
     userId: string
@@ -89,9 +91,9 @@ const slice = createSlice({
             state.fetchAuth = false
         },
         changeUserData(state, action: PayloadAction<ChangeUser>) {
-            const { userName, userEmail, phome, father, surrname } = action.payload
+            const { userName, userEmail,phone, father, surrname } = action.payload
             state.userInformation.father = father
-            state.userInformation.phome = phome
+            state.userInformation.phone = phone
             state.userInformation.userName = userName
             state.userInformation.userEmail = userEmail
             state.userInformation.surrname = surrname
@@ -122,11 +124,9 @@ export const fetchRegisterUser = (password: string, email: string, name: string)
         const respnonse = await UserApi.registerUser(password, email, name)
         dispatch(registerUserData(respnonse.data.message))
         console.log(respnonse)
-        if (respnonse.data.message = 'Пользователь создан') {
-            statusCode = '201'
+        if (respnonse.data.statusCode == 201) {
+            return respnonse.data.statusCode
         }
-        localStorage.setItem('token', respnonse.data.tokens.accessToken)
-        return statusCode
     } catch (e) {
         console.log(e)
     }
@@ -171,7 +171,6 @@ export const auth = () => async (dispatch: AppDispatch) => {
         const response = await UserApi.auth()
         // const response = await axios.get<UserInformation>(`${config.API_URL}/api/refresh`, { withCredentials: true })
 
-
         if (response.data.userId) {
             console.log('400')
             dispatch(getUserData(response.data))
@@ -185,8 +184,11 @@ export const auth = () => async (dispatch: AppDispatch) => {
             dispatch(fetchAuthSuccess())
             return
         }
-        const token = localStorage.getItem('token')
+
+
+        dispatch(fetchPainer(response.data.userId))
         dispatch(setAuth(true))
+        localStorage.setItem('token',response.data.accessToken)
         dispatch(fetchAuthSuccess())
         return response.data
     } catch (e) {

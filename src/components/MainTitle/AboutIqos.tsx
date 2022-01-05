@@ -8,9 +8,14 @@ import AboutIqs from '../../assets/imgages/aboutIqos.svg'
 
 export const AboutIqos: React.FC = () => {
 
+    
+
+  
+
+
     return (
         <Section>
-            <div className={s.aboutIqos_wrap}>
+            <div id="whatIsIqos" className={s.aboutIqos_wrap}>
                 <div  className={s.aboutIqos_wrap_column_one}>
                     <h1>Что такое iqos?</h1>
                     <p>
@@ -18,7 +23,7 @@ export const AboutIqos: React.FC = () => {
                     </p>
                 </div>
                 <div className={s.aboutIqos_wrap_column_two}>
-                    <div className={s.aboutIqos_wrap_column_two_photo}>
+                    <div  className={s.aboutIqos_wrap_column_two_photo}>
                         <img src={AboutIqs} alt="" />
                     </div>
                 </div>

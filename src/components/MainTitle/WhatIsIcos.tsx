@@ -21,8 +21,17 @@ export const WhatIsIcos: React.FC = () => {
     })
 
     const asyncZ = () => {
-        api.get('/getCookie')
+
     }
+
+    document.addEventListener('DOMContentLoaded',() => {
+        const aboutIqos  = document.querySelector('#whatIsIqos')
+        const btn = document.querySelector('#btn')
+        btn?.addEventListener('click',() => {
+            aboutIqos?.scrollIntoView({behavior:'smooth'})
+        })
+        console.log(aboutIqos)
+    })
 
     return (
         <Section centreObj={true} backgroundColor="rgba(0, 0, 0, 0)" backgroundImage={fullscreenImage} withImage={true} fullscreen={true}>
@@ -30,7 +39,7 @@ export const WhatIsIcos: React.FC = () => {
                 <div className={s.colummnOne}>Вред курения в том, что оно вызывает три основных заболевания: рак легких, хронический бронхит, коронарная болезнь. </div>
                 <div className={s.columnTwo}>
                     {/* <Link to="/"> */}
-                        <div onClick={asyncZ} className={btn}>
+                        <div id="btn" onClick={asyncZ} className={btn}>
                             Что такое iqos?
                         </div>
                     {/* </Link> */}

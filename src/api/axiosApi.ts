@@ -2,12 +2,13 @@ import { ChangeUser, UserInformation } from './../redux/user-reducer';
 import axios from "axios";
 import { ProductType, RegisterType } from "./Types";
 import config from '../config.json'
+import { IntitialState } from '../redux/painer-reducer';
 
 export const api = axios.create({
     withCredentials: true,
-    // baseURL: 'https://nosigarets.herokuapp.com/api',
-    baseURL:'http://localhost:4000/api',
-    responseType: 'json'
+    baseURL: 'https://nosigarets.herokuapp.com/api',
+    // baseURL:'http://localhost:4000/api',
+    responseType: 'json',
 })
 
 api.interceptors.request.use((config) => {
@@ -25,7 +26,7 @@ api.interceptors.response.use((config) => {
     if (error.response.status == 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true
         try {
-            const response = await axios.get(`http://localhost:4000/api/refresh`, { withCredentials: true })
+            const response = await axios.get(`${config.API_URL}/api/refresh`, { withCredentials: true })
             localStorage.setItem('token', response.data.accessToken)
             return api.request(originalRequest)
         } catch (e) {
@@ -41,6 +42,8 @@ const localApi = axios.create({
     baseURL: 'http://localhost:4000/api',
     responseType: 'json'
 })
+
+
 
 export class ProductsApi {
 
@@ -65,15 +68,12 @@ export class ProductsApi {
 
 
 
-const token = JSON.parse(  '{}')
+const token = JSON.parse('{}')
 
 
 interface Register {
     message: string,
-    tokens: {
-        accessToken: string,
-        refreshToken: string
-    }
+    statusCode:number
 }
 
 export class UserApi {
@@ -86,7 +86,7 @@ export class UserApi {
     }
 
     static async auth() {
-        return await axios.get<UserInformation>(`http://localhost:4000/api/refresh`, { withCredentials: true })
+        return await axios.get<UserInformation>(`${config.API_URL}/api/refresh`, { withCredentials: true })
 
         // return api.get<UserInformation | any>('/auth', { withCredentials: true })
     }
@@ -105,7 +105,7 @@ export class UserApi {
 
 
     static async changeUser(name: string, email: string, phone: string, surname: string, father: string) {
-        return api.post<ChangeUser | any>('/changeUser', {
+        return api.post<ChangeUser>('/changeUser', {
             name, email, phone, surname, father,
             headers: {
                 Authorization: `Bearer ${token}`
@@ -122,5 +122,19 @@ export class TestApi {
                 Authorization: `Bearer ${token}`
             }
         })
+    }
+}
+
+export class PainerApi {
+    static async getPainerUser(userId:string | number){
+        return api.get<IntitialState>(`/pannier/${userId}`)
+    }
+
+    static async addProduct(productId:string | number){
+        return api.get<IntitialState>(`/pannier/addProduct/${productId}`)
+    }
+
+    static async deleteProduct(productId:string | number){
+        return api.get<IntitialState>(`/pannier/deleteProduct/${productId}`)
     }
 }

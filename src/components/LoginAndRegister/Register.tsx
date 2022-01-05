@@ -25,6 +25,7 @@ const Form: React.FC = () => {
     const [status, setStatus] = useState<any>('')
 
     function redirectAndChange(){
+        console.log(2000)
         navigate('/login')
         registerUserData('')   
     }
@@ -57,12 +58,12 @@ const Form: React.FC = () => {
                 if (values.password !== values.repetPassword) {
                     errors.password = 'Пароли не совпадают'
                 }
-                return errors;
+                return errors
             }}
             onSubmit={(values, { setSubmitting }) => {
                 const { email, password, name } = values
 
-                dispatch(fetchRegisterUser(password, email, name)).then(data => data == '201' ? redirectAndChange() : null)
+                dispatch(fetchRegisterUser(password, email, name)).then(data => data == 201 ? redirectAndChange() : null)
             }}
         >
             {({

@@ -20,7 +20,8 @@ type PropsType = {
     backgroundImage?: any,
     withImage?: boolean,
     borderBottom?: boolean,
-    overflowHid?:string
+    overflowHid?:string,
+    minHeight?:string
 }
 
 
@@ -36,7 +37,8 @@ export const Section: React.FC<PropsType> = ({
     backgroundImage,
     withImage = false,
     borderBottom = false,
-    overflowHid
+    overflowHid,
+    minHeight
 }) => {
 
 
@@ -56,7 +58,7 @@ export const Section: React.FC<PropsType> = ({
 
 
     return (
-        <div className={mainSectionClasses} style={{ backgroundColor: backgroundColor, zIndex }}>
+        <div className={mainSectionClasses} style={{ backgroundColor: backgroundColor, zIndex,minHeight:minHeight }}>
             <img src={backgroundImage} alt="" />
             <div className={sectionClasses} style={{ backgroundColor: backgroundColor,overflow:overflowHid }}>
                 {children}

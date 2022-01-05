@@ -3,22 +3,19 @@ import { useDispatch } from 'react-redux'
 import reducer from './slice'
 import mainTitleReducer from './product-reducer'
 import userReducer from './user-reducer'
+import painerReducer from './painer-reducer'
 // ...
 
 import {
-    persistStore, persistReducer, FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
+    persistStore, persistReducer
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const rootReducer = combineReducers({
     sliceRed: reducer,
     products: mainTitleReducer,
-    user: userReducer
+    user: userReducer,
+    painer:painerReducer
 })
 
 const persistConfig = {

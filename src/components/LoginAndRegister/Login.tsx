@@ -50,7 +50,6 @@ const Form: React.FC = () => {
                     email, password
                 }
 
-
                 dispatch(login(objLogin)).then(data => data == 301 ? NavigateAnd() : null)
             }}
         >

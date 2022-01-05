@@ -4,6 +4,8 @@ import s from './scss/Store.module.scss'
 import arrowLeft from '../assets/imgages/arrowLeft.svg'
 import { Card, CardFlex } from './Card';
 import classNames from 'classnames';
+import { RootState, useAppDispatch } from '../redux/redux-toolkit-store';
+import { useSelector } from 'react-redux';
 
 interface Props {
     openStore?: boolean,
@@ -12,6 +14,12 @@ interface Props {
 
 
 export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
+
+    const dispatch = useAppDispatch()
+
+    const { _id, userId, totalCount, products } = useSelector((state: RootState) => state.painer)
+
+    const fetchAuth = useSelector((state:RootState) => state.user.fetchAuth)
 
     const [show, setShow] = useState(false)
     const [hide, setHide] = useState(true)
@@ -32,7 +40,6 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
 
 
     async function showNav() {
-
         setTimeout(() => {
             setHide(false)
         }, 100)
@@ -72,8 +79,8 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
     const modal = useRef<HTMLDivElement>(null)
 
     const wrapClasses = classNames({
-        [s.wrap]:true,
-        [s.show]:show
+        [s.wrap]: true,
+        [s.show]: show
     })
 
     return (
@@ -89,18 +96,21 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
                         <div className={s.line}></div>
                     </div>
                     <div className={s.cards}>
-                        <CardFlex _id='1' title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} />
+                        {
+                          !fetchAuth && products.map((el,i) => <CardFlex key={i} _id={el._id} title={el.title} value={el.value} index={i} colors={el.htmlColor} photo={el.photos} />) || <p>Пусто</p>
+                        }
+                        {/* <CardFlex _id='1' title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} /> */}
                     </div>
                 </div>
 
                 <div className={s.column_three}>
                     <div className={s.one}>
                         <div className={s.bold}>Стоимость товаров :</div>
-                        <div>0 UAN</div>
+                        <div>{totalCount} UAN</div>
                     </div>
                     <div className={s.two}>
                         <div className={s.bold}>Итого:</div>
-                        <div>0 UAN</div>
+                        <div>{totalCount} UAN</div>
                     </div>
                     <div className={s.three}>Оформить заказ</div>
                 </div>

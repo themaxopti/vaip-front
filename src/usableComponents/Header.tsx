@@ -8,6 +8,8 @@ import { Link } from "react-router-dom"
 import Navbar from '../assets/imgages/navbar.svg'
 import classNames from "classnames"
 import Black from '../assets/imgages/black.jpg'
+import { useSelector } from "react-redux"
+import { RootState } from "../redux/redux-toolkit-store"
 
 interface Props {
     openStore?: boolean,
@@ -15,7 +17,7 @@ interface Props {
 }
 
 
-export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
+export const Header: React.FC<Props> = ({ openStore, setOpenStore }) => {
 
     const [top, setTope] = useState(false)
 
@@ -36,6 +38,8 @@ export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
         }
     }, [top])
 
+
+
     function clickToNavbar() {
         setTope(!top)
         const body = document.querySelector('body')
@@ -46,6 +50,10 @@ export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
             body?.classList.remove('stopScroll')
         }
     }
+
+    const totalCount = useSelector((state: RootState) => state.painer.totalCount)
+
+
 
     return (
         <Section borderBottom={true} zIndex={999} positionFX={true} backgroundColor="#131212">
@@ -64,7 +72,7 @@ export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
                     <Link to="/"> <div>Что это такое?</div></Link>
                     <div onClick={() => setOpenStore(true)} className={s.storeIcon__value}>
                         <div className={s.icon}><img src={StoreIcon} alt="" /></div>
-                        <div>1231 UAN</div>
+                        <div>{totalCount || 0} UAN</div>
                     </div>
                     <Link to="/userPage">
                         <div className={s.user_info}>
@@ -84,7 +92,7 @@ export const Header: React.FC<Props> = ({ openStore,setOpenStore }) => {
 
                 <div onClick={() => setOpenStore(true)} className={s.storeIcon__value}>
                     <div className={s.icon}><img src={StoreIcon} alt="" /></div>
-                    <div>1231 UAN</div>
+                    <div>{totalCount || 0} UAN</div>
                 </div>
 
                 <div className={mobile_nav_items_classes}>

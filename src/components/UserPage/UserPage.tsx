@@ -10,7 +10,6 @@ import { Section } from "../../usableComponents/Section"
 import { Wraper } from "../../usableComponents/Wraper"
 import s from './UserPage.module.scss'
 import { RootState } from '../../redux/redux-toolkit-store'
-import { useLocalStorage } from "../hooks/useLocalStorage"
 
 
 interface PropsDescription {
@@ -48,7 +47,9 @@ const Description: React.FC<PropsDescription> = ({ title, nickname, isChanged, n
     )
 }
 
-
+interface Errors {
+    all: string
+}
 
 const DescriptionComponent: React.FC = () => {
     const [ischanged, setIsChanged] = useState(false)
@@ -60,22 +61,31 @@ const DescriptionComponent: React.FC = () => {
     }
 
     const fetchAuth = useSelector((state: RootState) => state.user.fetchAuth)
-    const { userName, surrname, father, phome, userEmail } = useSelector((state: RootState) => state.user.userInformation)
+    const { userName, surrname, father, phone, userEmail,isActivated } = useSelector((state: RootState) => state.user.userInformation)
     const dispatch = useAppDispatch()
+
 
     return (
 
         <Formik
-            initialValues={{ email: `${userEmail}`, father: `${father || ''}`, surrname: `${surrname || ''}`, phone: `${phome || ''}`, name: `${userName}` }}
+            initialValues={{ all:'',email: `${userEmail}`, father: `${father || ''}`, surrname: `${surrname || ''}`, phone: `${phone || ''}`, name: `${userName}` }}
             validate={values => {
-                const errors: any = {};
+                const errors:any = {}
+
+                if(!values.surrname || !values.phone || !values.name || !values.father || !values.email ){
+                    errors.all = 'Заполните все поля'
+                }
+               
                 return errors;
             }}
+
+
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
                     console.log(values)
                     const { name, email, phone, surrname, father } = values
                     dispatch(changeUser(name, email, phone, surrname, father))
+                    setIsChanged(false)
                 }, 400);
             }}
         >
@@ -96,16 +106,17 @@ const DescriptionComponent: React.FC = () => {
                     <div className={s.descs}>
                         <Description value={values.name} handleChange={handleChange} name="name" isChanged={ischanged} title="Имя" nickname={userName} />
                         <Description value={values.father} handleChange={handleChange} name="father" isChanged={ischanged} title="Отчество" nickname={father} />
-                        <Description value={values.surrname} handleChange={handleChange} name="surname" isChanged={ischanged} title="Фамилия" nickname={surrname} />
-                        <Description value={values.phone} handleChange={handleChange} name="phone" isChanged={ischanged} title="Телефон" nickname={phome} />
+                        <Description value={values.surrname} handleChange={handleChange} name="surrname" isChanged={ischanged} title="Фамилия" nickname={surrname} />
+                        <Description value={values.phone} handleChange={handleChange} name="phone" isChanged={ischanged} title="Телефон" nickname={phone} />
                         <Description value={values.email} handleChange={handleChange} name="email" isChanged={ischanged} title="Ел.Почта" nickname={userEmail} />
                     </div>
-                    {ischanged && <button type="submit" onSubmit={onSubmit} className={s.changeBtn}>Изменить</button>}
-                    <p className={s.youAreBad}>Вы не подтвердили аккаунт.Письмо с подтверждением на вашей почте.</p>
+                    {
+                        // @ts-ignore
+                        errors.all && <p style={{fontSize:"16px",color:'red'}}>{errors.all}</p>
+                    }
+                    {ischanged && <button type="submit" disabled={isActivated ? false : true} onSubmit={onSubmit} style={{opacity:`${!isActivated ? '0.5' : '1'}` }} className={s.changeBtn}>Изменить</button>}
+                    {!isActivated && <p className={s.youAreBad}>Вы не подтвердили аккаунт.Письмо с подтверждением на вашей почте.</p> }
                 </form>
-
-
-
             )}
         </Formik>
     )
@@ -114,11 +125,16 @@ const DescriptionComponent: React.FC = () => {
 
 
 const Tovars: React.FC = () => {
+    const products = useSelector((state:RootState) => state.painer.products)
+    const fetchAuth = useSelector((state:RootState) => state.user.fetchAuth)
+
     return (
         <>
             <div className={s.tovars_title}>Мои заказы</div>
             <div className={s.tovars_wrap}>
-                <Card _id="1" title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} isBuy={false} />
+                {
+                    !fetchAuth && products.map(el =>  <Card _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} isBuy={false} />)
+                }
                 {/* <Card isBuy={false} />
                 <Card isBuy={false} />
                 <Card isBuy={false} />
@@ -128,6 +144,7 @@ const Tovars: React.FC = () => {
     )
 }
 
+
 export const UserPage: React.FC = () => {
     const navigate = useNavigate()
 
@@ -136,6 +153,7 @@ export const UserPage: React.FC = () => {
 
     // @ts-ignore
     useEffect(async () => {
+        dispatch(auth())
         if (!value) {
             navigate('/login')
             localStorage.removeItem('token')
@@ -174,7 +192,7 @@ export const UserPage: React.FC = () => {
 
     return (
         <Wraper>
-            <Section>
+            <Section minHeight="800px">
                 <div className={s.usePage_wrap}>
 
                     <div className={s.usePage_wrap_columnOne}>
