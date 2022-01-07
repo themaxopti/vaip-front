@@ -95,7 +95,7 @@ export const Product: React.FC = () => {
     
     return (
         <Wraper openStore={openStore} setOpenStore={setOpenStore}>
-            <Section overflowHid='hidden'>
+            <Section overflowHid='hidden' minHeight='800px'>
                 {globalFetching && <div className={s.products_wrap}>
                     <div className={s.products_wrap_columnOne}>
                         <Swiper pagination={true} navigation={true} className="mySwiper2">

@@ -31,7 +31,7 @@ export const WhatIsIcos: React.FC = () => {
 
 
     return (
-        <Section centreObj={true} backgroundColor="rgba(0, 0, 0, 0)" backgroundImage={fullscreenImage} withImage={true} fullscreen={true}>
+        <Section centreObj={true} backgroundColor="rgba(0, 0, 0, 1)" backgroundImage={fullscreenImage} withImage={true} fullscreen={true}>
             <div className={s.whatIsIqosWrap}>
                 <div className={s.colummnOne}>Вред курения в том, что оно вызывает три основных заболевания: рак легких, хронический бронхит, коронарная болезнь. </div>
                 <div className={s.columnTwo}>

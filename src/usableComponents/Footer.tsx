@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
                         </div>
                         <div><img src={Visa} alt="" /></div>
 
-                        <a href="/" target="_blank"> <div style={{ color: 'white' }}>@Made by themaxopti</div> </a>
+                        <a href="https://github.com/themaxopti" target="_blank"> <div style={{ color: 'white' }}>@Made by themaxopti</div> </a>
                     </div>
                 </nav>
             </Section>
