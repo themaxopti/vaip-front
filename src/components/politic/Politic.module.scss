@@ -1,0 +1,7 @@
+@import '../../App.scss';
+
+.wrap{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    @include FontMonRope(16px,black,400);
+}

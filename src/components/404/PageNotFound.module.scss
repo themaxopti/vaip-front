@@ -1,0 +1,10 @@
+@import '../../App.scss';
+
+.wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include FontMonRope(24px,black,bold)
+}

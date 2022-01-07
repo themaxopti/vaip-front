@@ -137,4 +137,8 @@ export class PainerApi {
     static async deleteProduct(productId:string | number){
         return api.get<IntitialState>(`/pannier/deleteProduct/${productId}`)
     }
+
+    static async buyProduct(){
+        return api.get(`/pannier/buyProduct`)
+    }
 }

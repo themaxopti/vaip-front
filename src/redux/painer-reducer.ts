@@ -79,4 +79,13 @@ export const deleteProduct = (productId: string,index:number) => async (dispatch
 }
 
 
+export const buyProduct = () => async (dispatch: AppDispatch) => {
+    try {
+        const response = await PainerApi.buyProduct()        
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+
 export default slice.reducer

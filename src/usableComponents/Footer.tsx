@@ -12,22 +12,22 @@ export const Footer: React.FC = () => {
             <Section backgroundColor="#131212">
                 <nav className={"nav"}>
                     <div className={"good_footer"}>
-                        <Link to="/"> <div>Полезная информация</div> </Link>
-                        <Link to="/"> <div>Товары</div> </Link>
-                        <Link to="/"> <div>lil SOLID</div> </Link>
-                        <Link to="/"> <div>IQOS</div> </Link>
-                        <Link to="/"> <div>Аксесуары</div> </Link>
+                        <Link to="/plusMinus"> <div>Полезная информация</div> </Link>
+                        <Link to="/categories?titleH=Категории"> <div>Товары</div> </Link>
+                        <Link to="/products?title=lilSolid&categoryId=2&titleH=Lil solid"> <div>lil SOLID</div> </Link>
+                        <Link to="/products?title=iqos&categoryId=1&titleH=iqos"> <div>IQOS</div> </Link>
+                        <Link to="/products?title=embalishment&categoryId=3&titleH=Аксесуары"> <div>Аксесуары</div> </Link>
                     </div>
                     <div className={"contacts"}>
                         <div>Контакты</div>
                         <div>+3809513243</div>
                     </div>
                     <div>
-                        <Link to="/"> <div>Политика конфиденциальности</div></Link>
+                        <Link to="/politic"> <div>Политика конфиденциальности</div></Link>
                     </div>
                     <div className={"politics"}>
                         <div>
-                            <Link to="/"> Публичная аферта</Link>
+                            <Link to="/contract"> Публичная аферта</Link>
                         </div>
                     </div>
                     <div className={"tarifs"}>
@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
                             <div><img src={Privat} alt="" /></div>
                         </div>
                         <div><img src={Visa} alt="" /></div>
-                        <div style={{ color: 'white' }}>@Made by themaxopti</div>
 
+                        <a href="/" target="_blank"> <div style={{ color: 'white' }}>@Made by themaxopti</div> </a>
                     </div>
                 </nav>
             </Section>

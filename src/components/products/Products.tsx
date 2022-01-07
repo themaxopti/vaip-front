@@ -24,12 +24,8 @@ export const Products: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchCurrentProducts(title))
+        window.scrollTo(0,0)
     },[title])
-
-    
-    // useEffect(() => {
-    //     console.log(title)
-    // },[title])
     
 
     return (

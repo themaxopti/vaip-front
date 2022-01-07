@@ -35,9 +35,9 @@ export const SliderVaip: React.FC = () => {
     return (
         <Section overflowHid="hidden">
             {!isFetching && <div style={{ paddingTop: '4rem', paddingBottom: '4rem' }} className={s.wrapper_card}>
-                <Swiper cssMode={true} navigation={true} pagination={false} className="mySwiper">
+                <Swiper autoplay={{ delay: 3000 }} cssMode={true} navigation={true} pagination={false} className="mySwiper">
                     {
-                        slides.map((el,i) =>
+                        slides.map((el, i) =>
                             <SwiperSlide key={i}>
                                 <Card _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} />
                             </SwiperSlide>
@@ -55,7 +55,7 @@ export const SliderVaip: React.FC = () => {
                 </Swiper>
                 <div className={s.best}>Лучшие новинки</div>
             </div>}
-        </Section>
+        </Section >
 
 
     )

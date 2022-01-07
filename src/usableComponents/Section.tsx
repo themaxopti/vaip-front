@@ -7,8 +7,6 @@ import classNames from 'classnames'
 type Position = 'static' | 'relative'
 
 
-
-
 type PropsType = {
     children: React.ReactNode,
     centreObj?: boolean,

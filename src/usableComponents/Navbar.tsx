@@ -55,7 +55,7 @@ export const Navbar: React.FC = () => {
         { title: 'iqos', isClicked: null ,titleCategory:'iqos'},
         { title: 'lil SOLID', isClicked: null ,titleCategory:'lilSolid'},
         { title: 'Аксесуары', isClicked: null,titleCategory:'embalishment' },
-        { title: 'Vape', isClicked: null,titleCategory:'vape' },
+        { title: 'Vaip', isClicked: null,titleCategory:'vape' },
         { title: 'Блоки стиков', isClicked: null,titleCategory:'sticks'}
     ]
 

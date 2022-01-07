@@ -15,6 +15,11 @@ import { IsEighteen } from './components/IsEighteen/IsEighteen';
 import { Animation } from './components/Animation/Animation';
 import { useAppDispatch } from './redux/redux-toolkit-store';
 import { auth } from './redux/user-reducer';
+import { Politic } from './components/politic/Politic';
+import {СontractOferta} from './components/Contract/Contract'
+import { Thanks } from './components/ThanksPage/ThanksPage';
+import { PageNotFound } from './components/404/PageNotFound';
+
 
 const MainTitleWith = SettingsHoc(MainTitle)
 const PlusMinusWith = SettingsHoc(PlusMinus)
@@ -24,7 +29,10 @@ const RegisterWith = SettingsHoc(Register)
 const LoginWith = SettingsHoc(Login)
 const UserPageWith = SettingsHoc(UserPage)
 const ProductWith = SettingsHoc(Product)
-
+const PoliticWith = SettingsHoc(Politic)
+const СontractWith = SettingsHoc(СontractOferta)
+const ThanksWith = SettingsHoc(Thanks)
+const PageNotFoundWith = SettingsHoc(PageNotFound)
 
 const App: React.FC = () => {
   // @ts-ignore
@@ -39,16 +47,13 @@ const App: React.FC = () => {
     dispatch(auth())
   }, [])
 
-  console.log(localStorage.getItem('token'))
 
   return (
     <div>
 
-      {/* <IsEighteen animation={animation} setAnimation={setAnimation} />
+      <IsEighteen animation={animation} setAnimation={setAnimation} />
 
-      {hide && <Animation />} */}
-
-
+      {hide && <Animation />}
 
       <Routes>
         <Route path="/" element={<MainTitleWith />} />
@@ -59,9 +64,13 @@ const App: React.FC = () => {
         <Route path="/login" element={<LoginWith />} />
         <Route path="/userPage" element={<UserPageWith />} />
         <Route path="/product/:id" element={<ProductWith />} />
+        <Route path="/politic" element={<PoliticWith />} />
+        <Route path="/contract" element={<СontractWith />} />
+        <Route path="/thanks" element={<ThanksWith />} />
+        <Route path="*" element={<PageNotFoundWith />} />
       </Routes>
     </div>
   );
 }
-
+// PageNotFoundWith
 export default App;

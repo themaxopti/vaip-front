@@ -20,7 +20,7 @@ export const Categories: React.FC = () => {
             <div className={"title_category"}>{title}</div>
             <div className={"category__cards"}>
                 {
-                    !isFetching && products.map(el => <Card key={el._id} _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} />) || <img src={Loading} alt="" />
+                    !isFetching && products.map(el => <Card key={el._id} _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} />) || <img style={{width:'70px',height:'70px'}} src={Loading} alt="" />
                 }
                 {/* <Card title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} /> */}
                 {/* <Card />

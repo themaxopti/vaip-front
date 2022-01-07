@@ -85,7 +85,7 @@ export const Product: React.FC = () => {
         if(!isAuth){
             navigate('/login')
         }
-        dispatch(addProduct(_id))
+        await dispatch(addProduct(_id))
         setOpenStore(true)
         // setOpenStore(true)
     }

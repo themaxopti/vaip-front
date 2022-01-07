@@ -10,7 +10,7 @@ import { Section } from "../../usableComponents/Section"
 import { Wraper } from "../../usableComponents/Wraper"
 import s from './UserPage.module.scss'
 import { RootState } from '../../redux/redux-toolkit-store'
-
+import Loading from '../../assets/imgages/gif/Spinner-1s-200px.gif'
 
 interface PropsDescription {
     title: string,
@@ -61,21 +61,21 @@ const DescriptionComponent: React.FC = () => {
     }
 
     const fetchAuth = useSelector((state: RootState) => state.user.fetchAuth)
-    const { userName, surrname, father, phone, userEmail,isActivated } = useSelector((state: RootState) => state.user.userInformation)
+    const { userName, surrname, father, phone, userEmail, isActivated } = useSelector((state: RootState) => state.user.userInformation)
     const dispatch = useAppDispatch()
 
 
     return (
 
         <Formik
-            initialValues={{ all:'',email: `${userEmail}`, father: `${father || ''}`, surrname: `${surrname || ''}`, phone: `${phone || ''}`, name: `${userName}` }}
+            initialValues={{ all: '', email: `${userEmail}`, father: `${father || ''}`, surrname: `${surrname || ''}`, phone: `${phone || ''}`, name: `${userName}` }}
             validate={values => {
-                const errors:any = {}
+                const errors: any = {}
 
-                if(!values.surrname || !values.phone || !values.name || !values.father || !values.email ){
+                if (!values.surrname || !values.phone || !values.name || !values.father || !values.email) {
                     errors.all = 'Заполните все поля'
                 }
-               
+
                 return errors;
             }}
 
@@ -112,28 +112,28 @@ const DescriptionComponent: React.FC = () => {
                     </div>
                     {
                         // @ts-ignore
-                        errors.all && <p style={{fontSize:"16px",color:'red'}}>{errors.all}</p>
+                        errors.all && <p style={{ fontSize: "16px", color: 'red' }}>{errors.all}</p>
                     }
-                    {ischanged && <button type="submit" disabled={isActivated ? false : true} onSubmit={onSubmit} style={{opacity:`${!isActivated ? '0.5' : '1'}` }} className={s.changeBtn}>Изменить</button>}
-                    {!isActivated && <p className={s.youAreBad}>Вы не подтвердили аккаунт.Письмо с подтверждением на вашей почте.</p> }
+                    {ischanged && <button type="submit" disabled={isActivated ? false : true} onSubmit={onSubmit} style={{ opacity: `${!isActivated ? '0.5' : '1'}` }} className={s.changeBtn}>Изменить</button>}
+                    {!isActivated && <p className={s.youAreBad}>Вы не подтвердили аккаунт.Письмо с подтверждением на вашей почте.</p>}
                 </form>
             )}
-        </Formik>
+        </Formik> 
     )
 }
 
 
 
 const Tovars: React.FC = () => {
-    const products = useSelector((state:RootState) => state.painer.products)
-    const fetchAuth = useSelector((state:RootState) => state.user.fetchAuth)
+    const products = useSelector((state: RootState) => state.painer.products)
+    const fetchAuth = useSelector((state: RootState) => state.user.fetchAuth)
 
     return (
         <>
             <div className={s.tovars_title}>Мои заказы</div>
             <div className={s.tovars_wrap}>
                 {
-                    !fetchAuth && products.map(el =>  <Card _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} isBuy={false} />)
+                    !fetchAuth && products.map(el => <Card _id={el._id} title={el.title} value={el.value} colors={el.htmlColor} photo={el.photos} isBuy={false} />)
                 }
                 {/* <Card isBuy={false} />
                 <Card isBuy={false} />
@@ -169,8 +169,6 @@ export const UserPage: React.FC = () => {
     const [isDesc, setIsDesc] = useState(true)
     const [isTovars, setIsTovars] = useState(false)
 
-    useEffect(() => {
-    }, [isTovars, isDesc])
 
     function logout() {
         dispatch(logOut())
@@ -206,7 +204,7 @@ export const UserPage: React.FC = () => {
                         <p>Мой аккаунт</p>
 
                         <div className={s.usePage_wrap_columnTwo_wrap}>
-                            {!fetchAuth && isDesc && <DescriptionComponent />}
+                            {!fetchAuth && isDesc  ? <DescriptionComponent /> : <img src={Loading} style={{width:'60px',height:'60px',display:`${isTovars ? 'none' : 'block'}`}}/>}
                             {!fetchAuth && isTovars && <Tovars />}
                         </div>
 

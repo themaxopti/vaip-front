@@ -6,6 +6,8 @@ import { Card, CardFlex } from './Card';
 import classNames from 'classnames';
 import { RootState, useAppDispatch } from '../redux/redux-toolkit-store';
 import { useSelector } from 'react-redux';
+import { PainerApi } from '../api/axiosApi';
+import axios from 'axios';
 
 interface Props {
     openStore?: boolean,
@@ -18,8 +20,9 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
     const dispatch = useAppDispatch()
 
     const { _id, userId, totalCount, products } = useSelector((state: RootState) => state.painer)
+    const { isAuth } = useSelector((state: RootState) => state.user)
 
-    const fetchAuth = useSelector((state:RootState) => state.user.fetchAuth)
+    const fetchAuth = useSelector((state: RootState) => state.user.fetchAuth)
 
     const [show, setShow] = useState(false)
     const [hide, setHide] = useState(true)
@@ -83,6 +86,21 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
         [s.show]: show
     })
 
+    const [message, setMessage] = useState<string | null>(null)
+
+    const buyProduct = () => {
+        if (!isAuth) {
+            return setMessage('Войдите в аккаунт')
+        }
+
+        axios.get('http://localhost:4000/api/bla', {
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+    }
+
     return (
         <div ref={wrap} data-wrap="wrap" className={wrapClasses}>
             <div ref={modal} className={classes}>
@@ -97,7 +115,7 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
                     </div>
                     <div className={s.cards}>
                         {
-                          !fetchAuth && products.map((el,i) => <CardFlex key={i} _id={el._id} title={el.title} value={el.value} index={i} colors={el.htmlColor} photo={el.photos} />) || <p>Пусто</p>
+                            !fetchAuth && products.map((el, i) => <CardFlex key={i} _id={el._id} title={el.title} value={el.value} index={i} colors={el.htmlColor} photo={el.photos} />) || <p>Пусто</p>
                         }
                         {/* <CardFlex _id='1' title={'el.title'} value={1} colors={['el.htmlColor']} photo={['el.photos']} /> */}
                     </div>
@@ -112,7 +130,8 @@ export const Store: React.FC<Props> = ({ openStore, setOpenStore }) => {
                         <div className={s.bold}>Итого:</div>
                         <div>{totalCount} UAN</div>
                     </div>
-                    <div className={s.three}>Оформить заказ</div>
+                    {message && <p>{message}</p>}
+                    <div onClick={buyProduct} className={s.three}>Оформить заказ</div>
                 </div>
 
             </div>

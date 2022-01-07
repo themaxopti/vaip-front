@@ -9,7 +9,7 @@ import IQOS from '../../assets/imgages/iq3mcover 1.png'
 
 export const VaipAndIqos: React.FC = () => {
 
-    const button = classNames([s.button],[s.two])
+    const button = classNames([s.button], [s.two])
 
     return (
         <div className={s.vaip_andIqos}>
@@ -22,9 +22,11 @@ export const VaipAndIqos: React.FC = () => {
                     </div>
                     <div className={s.photo_and_title_title}>VAIP</div>
                 </div>
-                <div className={s.button}>
-                    Узнать больше
-                </div>
+                <Link to="/products?title=vape&categoryId=4&titleH=Vaip">
+                    <div className={s.button}>
+                        Узнать больше
+                    </div>
+                </Link>
             </div>
             <div className={s.vaip_andIqos_column_two}>
                 <div className={s.photo_and_title}>
@@ -33,11 +35,13 @@ export const VaipAndIqos: React.FC = () => {
                             <img src={IQOS} alt="" />
                         </div>
                     </div>
-                    <div className={s.photo_and_title_title} style={{color:'#000000'}}>Iqos</div>
+                    <div className={s.photo_and_title_title} style={{ color: '#000000' }}>Iqos</div>
                 </div>
-                <div className={button}>
-                    Узнать больше
-                </div>
+                <Link to="/products?title=iqos&categoryId=1&titleH=iqos">
+                    <div className={button}>
+                        Узнать больше
+                    </div>
+                </Link>
             </div>
         </div>
     )
