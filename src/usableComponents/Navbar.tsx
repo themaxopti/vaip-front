@@ -52,11 +52,11 @@ export const Navbar: React.FC = () => {
 
     const tovars: NavElemetn[] = [
         { title: 'Категории', isClicked: null, isCategory: true },
-        { title: 'iqos', isClicked: null ,titleCategory:'iqos'},
-        { title: 'lil SOLID', isClicked: null ,titleCategory:'lilSolid'},
-        { title: 'Аксесуары', isClicked: null,titleCategory:'embalishment' },
-        { title: 'Vaip', isClicked: null,titleCategory:'vape' },
-        { title: 'Блоки стиков', isClicked: null,titleCategory:'sticks'}
+        { title: 'iqos', isClicked: null, titleCategory: 'iqos' },
+        { title: 'lil SOLID', isClicked: null, titleCategory: 'lilSolid' },
+        { title: 'Аксесуары', isClicked: null, titleCategory: 'embalishment' },
+        { title: 'Vaip', isClicked: null, titleCategory: 'vape' },
+        { title: 'Блоки стиков', isClicked: null, titleCategory: 'sticks' }
     ]
 
 

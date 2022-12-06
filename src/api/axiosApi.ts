@@ -6,7 +6,7 @@ import { IntitialState } from '../redux/painer-reducer';
 
 export const api = axios.create({
     withCredentials: true,
-    baseURL: 'https://nosigarets.herokuapp.com/api',
+    baseURL: 'https://nosigarrets.onrender.com/api',
     // baseURL:'http://localhost:4000/api',
     responseType: 'json',
 })
@@ -73,7 +73,7 @@ const token = JSON.parse('{}')
 
 interface Register {
     message: string,
-    statusCode:number
+    statusCode: number
 }
 
 export class UserApi {
@@ -126,19 +126,19 @@ export class TestApi {
 }
 
 export class PainerApi {
-    static async getPainerUser(userId:string | number){
+    static async getPainerUser(userId: string | number) {
         return api.get<IntitialState>(`/pannier/${userId}`)
     }
 
-    static async addProduct(productId:string | number){
+    static async addProduct(productId: string | number) {
         return api.get<IntitialState>(`/pannier/addProduct/${productId}`)
     }
 
-    static async deleteProduct(productId:string | number){
+    static async deleteProduct(productId: string | number) {
         return api.get<IntitialState>(`/pannier/deleteProduct/${productId}`)
     }
 
-    static async buyProduct(){
+    static async buyProduct() {
         return api.get(`/pannier/buyProduct`)
     }
 }
